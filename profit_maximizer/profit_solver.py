@@ -49,7 +49,8 @@ class ProfitSolver:
                 <strategy> :: List<List<Int>> - List of machine descriptions (D, P, R, G)
                 <strategy_string> :: String - string representation of the strategy
             outputs:
-                <out> :: (List<Int>, Bool) - reports the
+                <out> :: (List<Int>, Bool) - returns the end state if any, and a token to indicate to the solver()
+                to try update the maximum_profit global variable
             """
             # Checks if each step of the strategy breaks-even or profits
             for step in strategy:
