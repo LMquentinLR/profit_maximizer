@@ -70,7 +70,7 @@ class ProfitSolver:
 
         # Checks if the provided max length of permutation is acceptable, and defaults if not
         if (n==None or type(n)!=int) or (n>(self.length_of_restructuring+1)//2 or n<0):
-            n = (self.length_of_restructuring+1)//2
+            n = min(len(machines), (self.length_of_restructuring+1)//2)
         # Declares ACM's start state at day 0
         state_ACM_at_day_zero = [0,0,self.starting_cash,0] 
         # for each length of permutation do:
@@ -90,7 +90,7 @@ class ProfitSolver:
                     if  first_elements not in self.memory.keys(): 
                         # Checks if the first elements of the permutation are sorted
                         if(all(((strategy[i][0] < (strategy[i + 1][0]+1) 
-                                 for i in range(len(strategy)-1))))):                         
+                                 for i in range(len(strategy)-1))))):   
                             yield is_strategy_valid(state_ACM_at_day_zero, strategy, strategy_string)
                     else:
                         yield is_strategy_valid(self.memory[first_elements], [strategy[-1]], strategy_string)
